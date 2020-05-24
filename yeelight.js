@@ -130,7 +130,7 @@ class Bulb extends EventEmitter {
 
   color(r, g, b) {
     this.sendCmd({
-      params: [r * 65536 + g * 256 + b, 'sudden', 300],
+      params: [r * 65536 + g * 256 + b, 'smooth', 300],
       method: 'set_rgb'
     });
   }

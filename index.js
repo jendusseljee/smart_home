@@ -3,7 +3,34 @@
 const Bulb = require('./yeelight.js');
 const http = require('http');
 
-const bulbs = [new Bulb('192.168.0.150'), new Bulb('192.168.0.151'), new Bulb('192.168.0.152')];
+const desk = new Bulb('192.168.0.150');
+const bed = new Bulb('192.168.0.151');
+const ceiling = new Bulb('192.168.0.152');
+
+
+const bulbs = [desk, ceiling, bed];
+
+
+const flow = function(){
+    let red = 255 * 65536;
+    let green = 255 * 256;
+    let blue = 255;
+
+    desk.sendCmd({
+      params: [ 0, 1, `3000, 1, ${red}, 50, 3000, 1, ${green}, 50, 3000, 1, ${blue}, 50`],
+      method: 'start_cf'
+    });
+
+    ceiling.sendCmd({
+        params: [ 0, 1, `3000, 1, ${green}, 50, 3000, 1, ${blue}, 50, 3000, 1, ${red}, 50`],
+        method: 'start_cf'
+    });
+
+    bed.sendCmd({
+        params: [ 0, 1, `3000, 1, ${blue}, 50, 3000, 1, ${red}, 50, 3000, 1, ${green}, 50`],
+        method: 'start_cf'
+    });
+};
 
 const reconnect = function () {
    let bulb;
@@ -38,9 +65,12 @@ const requestListener = function (req, res) {
         case '/toggle':
             toggle();
             break;
-       case '/reconnect':
+        case '/reconnect':
           reconnect();
           break;
+        case '/flow':
+            flow();
+            break;
     }
 
     res.writeHead(200);
