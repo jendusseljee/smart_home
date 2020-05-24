@@ -14,46 +14,46 @@ const reconnect = function () {
 };
 
 const moody = function () {
-   let bulb;
-   for (bulb of bulbs) {
-      bulb.onn();
-      bulb.temperature(2000);
-      bulb.brightness(20);
-   }
+    let bulb;
+    for (bulb of bulbs) {
+        bulb.onn();
+        bulb.temperature(2000);
+        bulb.brightness(20);
+    }
 };
 
 const toggle = function () {
-   let bulb;
-   for (bulb of bulbs) {
-      bulb.toggle();
-   }
+    let bulb;
+    for (bulb of bulbs) {
+        bulb.toggle();
+    }
 };
 
 
 const requestListener = function (req, res) {
-   switch (req.url) {
-      case '/moody':
-         moody();
-         break;
-      case '/toggle':
-         toggle();
-         break;
-      case '/reconnect':
-         reconnect();
-         break;
-   }
+    switch (req.url) {
+        case '/moody':
+            moody();
+            break;
+        case '/toggle':
+            toggle();
+            break;
+       case '/reconnect':
+          reconnect();
+          break;
+    }
 
-   res.writeHead(200);
-   res.end('Jen\'s smart home API');
+    res.writeHead(200);
+    res.end('Jen\'s smart home API');
 };
 
 const server = http.createServer(requestListener);
 
 let bulb;
 for (bulb of bulbs) {
-   bulb.on('error', (light, error) => console.log(error));
-   bulb.on('disconnected', () => console.log('disconnected'));
-   bulb.connect();
+    bulb.on('error', (light, error) => console.log(error));
+    bulb.on('disconnected', () => console.log('disconnected'));
+    bulb.connect();
 }
 
 setInterval(reconnect, 5000);

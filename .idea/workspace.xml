@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="be9974fc-d3d3-4641-8fa2-878877d87ffd" name="Default Changelist" comment="" />
+    <list default="true" id="be9974fc-d3d3-4641-8fa2-878877d87ffd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yeelight.js" beforeDir="false" afterPath="$PROJECT_DIR$/yeelight.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,10 +78,26 @@
       <workItem from="1590181163075" duration="5880000" />
       <workItem from="1590270964903" duration="4127000" />
       <workItem from="1590280104093" duration="1640000" />
+      <workItem from="1590348032524" duration="3685000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="made server attempt to reconnect every 5 seconds" />
+    <option name="LAST_COMMIT_MESSAGE" value="made server attempt to reconnect every 5 seconds" />
   </component>
 </project>

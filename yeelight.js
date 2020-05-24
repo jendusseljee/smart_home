@@ -9,6 +9,7 @@ class Bulb extends EventEmitter {
 
     this.ip = ip;
     this.port = port || 55443;
+    this.connected = false;
   }
 
   connect() {
@@ -65,6 +66,7 @@ class Bulb extends EventEmitter {
 
   _onConnected() {
     // console.log('_onConnected');
+    this.connected = true;
 
     this.emit('connected', this);
   }
@@ -77,6 +79,7 @@ class Bulb extends EventEmitter {
 
   _onClose() {
     // console.log('_onClose');
+    this.connected = false;
 
     this.emit('disconnected', this);
   }
@@ -143,63 +146,4 @@ class Bulb extends EventEmitter {
   }
 }
 
-const base = (l1, cb, toBeCalled) => {
-  l1.on('connected', () => {
-    toBeCalled();
-  });
-
-  l1.on('data', (light, d) => {
-    light.disconnect();
-
-    let err = new Error(`light ${light.ip} returns not ok`);
-    if (
-      Array.isArray(d.result) &&
-      d.result.length === 1 &&
-      d.result[0] === 'ok'
-    ) {
-      err = null;
-    }
-
-    if (cb) {
-      cb(err);
-    }
-  });
-
-  l1.on('error', (light, err) => {
-    light.disconnect();
-
-    if (cb) {
-      cb(err);
-    }
-  });
-
-  l1.connect();
-};
-
-module.exports = {
-  Bulb,
-  toggle: (ip, cb) => {
-    const l1 = new Bulb(ip);
-    base(l1, cb, l1.toggle.bind(l1));
-  },
-  on: (ip, cb) => {
-    const l1 = new Bulb(ip);
-    base(l1, cb, l1.onn.bind(l1));
-  },
-  off: (ip, cb) => {
-    const l1 = new Bulb(ip);
-    base(l1, cb, l1.off.bind(l1));
-  },
-  brightness: (ip, level, cb) => {
-    const l1 = new Bulb(ip);
-    base(l1, cb, l1.brightness.bind(l1, level));
-  },
-  color: (ip, r, g, b, cb) => {
-    const l1 = new Bulb(ip);
-    base(l1, cb, l1.color.bind(l1, r, g, b));
-  },
-  temperature: (ip, level, cb) => {
-    const l1 = new Bulb(ip);
-    base(l1, cb, l1.temperature.bind(l1, level));
-  },
-};
+module.exports = Bulb;
