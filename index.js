@@ -4,72 +4,81 @@ const Bulb = require('./yeelight.js');
 const http = require('http');
 
 const desk = new Bulb('192.168.0.150');
-const bed = new Bulb('192.168.0.151');
-const ceiling = new Bulb('192.168.0.152');
+const ceiling = new Bulb('192.168.0.151');
+const bed = new Bulb('192.168.0.152');
 
 
 const bulbs = [desk, ceiling, bed];
 
-
-const flow = function(){
-    let red = 255 * 65536;
-    let green = 255 * 256;
-    let blue = 255;
-
-    desk.sendCmd({
-      params: [ 0, 1, `3000, 1, ${red}, 50, 3000, 1, ${green}, 50, 3000, 1, ${blue}, 50`],
-      method: 'start_cf'
-    });
-
-    ceiling.sendCmd({
-        params: [ 0, 1, `3000, 1, ${green}, 50, 3000, 1, ${blue}, 50, 3000, 1, ${red}, 50`],
-        method: 'start_cf'
-    });
-
-    bed.sendCmd({
-        params: [ 0, 1, `3000, 1, ${blue}, 50, 3000, 1, ${red}, 50, 3000, 1, ${green}, 50`],
-        method: 'start_cf'
-    });
-};
-
 const reconnect = function () {
-   let bulb;
-   for (bulb of bulbs) {
-      if (!bulb.connected)
-         bulb.connect();
-   }
-};
-
-const moody = function () {
-    let bulb;
-    for (bulb of bulbs) {
-        bulb.onn();
-        bulb.temperature(2000);
-        bulb.brightness(20);
+    for (let bulb of bulbs) {
+        if (!bulb.connected)
+            bulb.connect();
     }
 };
 
-const toggle = function () {
-    let bulb;
-    for (bulb of bulbs) {
-        bulb.toggle();
-    }
+
+const inSequence = async function(f, t) {
+    f(desk);
+    setTimeout(() => f(ceiling), t);
+    setTimeout(() => f(bed), t*2);
+};
+
+const simultaneous = function (f) {
+  for (let bulb of bulbs)
+      f(bulb);
+};
+
+
+const moodyBulb = function (bulb) {
+    bulb.onn();
+    bulb.temperature(2000);
+    bulb.brightness(20);
+};
+
+const onBulb = function (bulb) {
+    bulb.onn();
+};
+
+const offBulb = function (bulb) {
+  bulb.off();
+};
+
+const toggleBulb = function(bulb) {
+    bulb.toggle();
+};
+
+const flowBulb = function (bulb) {
+    let rg = 255 * 65536 + 255 * 256;
+    let gb = 255 * 256 + 255;
+    let br = 255 + 255 * 65536;
+
+    bulb.sendCmd({
+        params: [ 0, 1, `3000, 1, ${rg}, 100, 3000, 1, ${gb}, 100, 3000, 1, ${br}, 100`],
+        method: 'start_cf'
+    });
 };
 
 
 const requestListener = function (req, res) {
     switch (req.url) {
         case '/moody':
-            moody();
+            simultaneous(moodyBulb);
             break;
         case '/toggle':
-            toggle();
+            inSequence(toggleBulb, 500);
+            break;
+        case '/on':
+            inSequence(onBulb, 500);
+            break;
+        case '/off':
+            inSequence(offBulb, 500);
             break;
         case '/reconnect':
           reconnect();
           break;
         case '/flow':
-            flow();
+            inSequence(flowBulb, 1500);
             break;
     }
 
