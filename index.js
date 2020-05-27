@@ -2,6 +2,8 @@
 
 const Bulb = require('./yeelight.js');
 const http = require('http');
+const url = require('url');
+const querystring = require('querystring');
 
 const desk = new Bulb('192.168.0.150');
 const ceiling = new Bulb('192.168.0.151');
@@ -59,9 +61,24 @@ const flowBulb = function (bulb) {
     });
 };
 
+const rgbBulb = function (bulb, r, g, b) {
+    bulb.color(parseInt(r), parseInt(g), parseInt(b));
+};
+
+const ctBulb = function (bulb, value) {
+    bulb.temperature(parseInt(value));
+};
+
+const brightnessBulb = function (bulb, value) {
+    bulb.brightness(parseInt(value));
+};
+
 
 const requestListener = function (req, res) {
-    switch (req.url) {
+    let request = url.parse(req.url);
+    let params = querystring.parse(request.query);
+
+    switch (request.pathname) {
         case '/moody':
             simultaneous(moodyBulb);
             break;
@@ -79,6 +96,15 @@ const requestListener = function (req, res) {
           break;
         case '/flow':
             inSequence(flowBulb, 1500);
+            break;
+        case '/rgb':
+            simultaneous((bulb) => rgbBulb(bulb, params.r, params.g, params.b));
+            break;
+        case '/temperature':
+            simultaneous((bulb) => ctBulb(bulb, params.value));
+            break;
+        case '/brightness':
+            simultaneous((bulb) => brightnessBulb(bulb, params.value));
             break;
     }
 
