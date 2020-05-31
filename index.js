@@ -9,26 +9,39 @@ const desk = new Bulb('192.168.0.150');
 const ceiling = new Bulb('192.168.0.151');
 const bed = new Bulb('192.168.0.152');
 
-
 const bulbs = [desk, ceiling, bed];
 
-const reconnect = function () {
+
+let alarm;
+let wentOff = false;
+
+const repeater = function () {
     for (let bulb of bulbs) {
         if (!bulb.connected)
             bulb.connect();
     }
+
+    let now = new Date();
+
+    if (alarm !== undefined && now.getHours() >= alarm.hour && now.getMinutes() >= alarm.minute && !wentOff) {
+        simultaneous(onBulb);
+        simultaneous((bulb) => brightnessBulb(bulb, 100));
+        simultaneous((bulb) => ctBulb(bulb, 6500));
+        wentOff = true;
+    } else if (now.getHours() === 0 && wentOff)
+        wentOff = false;
 };
 
 
-const inSequence = async function(f, t) {
+const inSequence = async function (f, t) {
     f(desk);
     setTimeout(() => f(ceiling), t);
-    setTimeout(() => f(bed), t*2);
+    setTimeout(() => f(bed), t * 2);
 };
 
 const simultaneous = function (f) {
-  for (let bulb of bulbs)
-      f(bulb);
+    for (let bulb of bulbs)
+        f(bulb);
 };
 
 
@@ -43,10 +56,10 @@ const onBulb = function (bulb) {
 };
 
 const offBulb = function (bulb) {
-  bulb.off();
+    bulb.off();
 };
 
-const toggleBulb = function(bulb) {
+const toggleBulb = function (bulb) {
     bulb.toggle();
 };
 
@@ -56,7 +69,7 @@ const flowBulb = function (bulb) {
     let br = 255 + 255 * 65536;
 
     bulb.sendCmd({
-        params: [ 0, 1, `3000, 1, ${rg}, 100, 3000, 1, ${gb}, 100, 3000, 1, ${br}, 100`],
+        params: [0, 1, `3000, 1, ${rg}, 100, 3000, 1, ${gb}, 100, 3000, 1, ${br}, 100`],
         method: 'start_cf'
     });
 };
@@ -73,6 +86,10 @@ const brightnessBulb = function (bulb, value) {
     bulb.brightness(parseInt(value));
 };
 
+const defaultResponse = function (res) {
+    res.writeHead(200);
+    res.end('Jen\'s smart home API');
+};
 
 const requestListener = function (req, res) {
     let request = url.parse(req.url);
@@ -81,35 +98,51 @@ const requestListener = function (req, res) {
     switch (request.pathname) {
         case '/moody':
             simultaneous(moodyBulb);
+            defaultResponse(res);
             break;
         case '/toggle':
             inSequence(toggleBulb, 500);
+            defaultResponse(res);
             break;
         case '/on':
             inSequence(onBulb, 500);
+            defaultResponse(res);
             break;
         case '/off':
             inSequence(offBulb, 500);
+            defaultResponse(res);
             break;
-        case '/reconnect':
-          reconnect();
-          break;
         case '/flow':
             inSequence(flowBulb, 1500);
+            defaultResponse(res);
             break;
         case '/rgb':
             simultaneous((bulb) => rgbBulb(bulb, params.r, params.g, params.b));
+            defaultResponse(res);
             break;
         case '/temperature':
             simultaneous((bulb) => ctBulb(bulb, params.value));
+            defaultResponse(res);
             break;
         case '/brightness':
             simultaneous((bulb) => brightnessBulb(bulb, params.value));
+            defaultResponse(res);
             break;
+        case '/props':
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify([desk.status(), ceiling.status(), bed.status()]));
+            break;
+        case '/set-alarm':
+            if (params.hour === null)
+                alarm = undefined;
+            else if (params.minute === null)
+                alarm = {hour: params.hour, minute: 0};
+            else
+                alarm = {hour: params.hour, minute: params.minute};
+            defaultResponse(res);
+            break
     }
 
-    res.writeHead(200);
-    res.end('Jen\'s smart home API');
 };
 
 const server = http.createServer(requestListener);
@@ -121,6 +154,6 @@ for (bulb of bulbs) {
     bulb.connect();
 }
 
-setInterval(reconnect, 5000);
+setInterval(repeater, 5000);
 
 server.listen(3000);
