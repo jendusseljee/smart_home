@@ -133,12 +133,22 @@ const requestListener = function (req, res) {
             res.end(JSON.stringify([desk.status(), ceiling.status(), bed.status()]));
             break;
         case '/set-alarm':
-            if (params.hour === null)
-                alarm = undefined;
-            else if (params.minute === null)
-                alarm = {hour: params.hour, minute: 0};
+            let hour = parseInt(params.hour);
+            let minute = parseInt(params.minute);
+
+            let now = new Date();
+            let delta = 0;
+            if (hour >= now.getHours())
+                delta += (hour - now.getHours()) * 3600000;
             else
-                alarm = {hour: params.hour, minute: params.minute};
+                delta += (24 - (now.getHours() - hour)) * 3600000;
+            delta += (minute-now.getMinutes())*60000;
+            console.log(delta);
+            setTimeout(() => {
+                simultaneous(onBulb);
+                simultaneous((bulb) => brightnessBulb(bulb, 100));
+                simultaneous((bulb) => ctBulb(bulb, 6500));
+            }, delta);
             defaultResponse(res);
             break
     }

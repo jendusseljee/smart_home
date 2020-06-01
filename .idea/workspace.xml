@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be9974fc-d3d3-4641-8fa2-878877d87ffd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
@@ -83,7 +84,8 @@
       <workItem from="1590359888515" duration="13000" />
       <workItem from="1590359909842" duration="6779000" />
       <workItem from="1590600275335" duration="2668000" />
-      <workItem from="1590949053376" duration="1333000" />
+      <workItem from="1590949053376" duration="1567000" />
+      <workItem from="1591031690831" duration="1623000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <created>1590359054598</created>
@@ -106,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590423407950</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added sequences and some cleanup">
+      <created>1590950486592</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1590950486592</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
