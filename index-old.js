@@ -1,6 +1,6 @@
 'use strict';
 
-const Bulb = require('./yeelight.js');
+const Bulb = require('./lights/yeelight.js');
 const http = require('http');
 const url = require('url');
 const querystring = require('querystring');

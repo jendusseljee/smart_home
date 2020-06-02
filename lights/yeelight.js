@@ -4,10 +4,10 @@ const net = require('net');
 const { EventEmitter } = require('events');
 
 class Bulb extends EventEmitter {
-  constructor(ip, port) {
+  constructor(bulb, port) {
     super();
 
-    this.ip = ip;
+    this.bulb = bulb;
     this.port = port || 55443;
     this.connected = false;
   }
@@ -24,7 +24,7 @@ class Bulb extends EventEmitter {
 
     this.waitingRequest = new Map();
 
-    this.client.connect(this.port, this.ip, this._onConnected.bind(this));
+    this.client.connect(this.port, this.bulb, this._onConnected.bind(this));
 
     this.client.on('data', this._onData.bind(this));
     this.client.on('close', this._onClose.bind(this));
@@ -146,4 +146,24 @@ class Bulb extends EventEmitter {
   }
 }
 
-module.exports = Bulb;
+module.exports = {
+    Bulb,
+    toggle: (bulb) => {
+        bulb.toggle();
+    },
+    on: (bulb) => {
+        bulb.onn();
+    },
+    off: (bulb) => {
+        bulb.off();
+    },
+    brightness: (bulb, level) => {
+        bulb.brightness(level);
+    },
+    temperature: (bulb, temp) => {
+        bulb.temperature(temp);
+    },
+    color: (bulb, r, g, b) => {
+        bulb.color(r, g, b);
+    }
+};
