@@ -12,6 +12,7 @@
   "dependencies": {
     "fastify": "^2.14.1",
     "node-yeelight": "^1.0.6",
+    "sonos": "^1.13.0",
     "yeelight.io": "^1.1.2"
   }
 }

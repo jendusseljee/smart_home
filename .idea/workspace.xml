@@ -2,42 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be9974fc-d3d3-4641-8fa2-878877d87ffd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lights/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/music/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index-old.js" beforeDir="false" afterPath="$PROJECT_DIR$/index-old.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ajv/lib/ajv.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/lib/ajv.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ajv/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/fast-deep-equal/es6/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-deep-equal/es6/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/fast-deep-equal/es6/react.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-deep-equal/es6/react.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/fast-deep-equal/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-deep-equal/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/fast-deep-equal/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-deep-equal/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/fast-deep-equal/react.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-deep-equal/react.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/fast-json-stable-stringify/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-json-stable-stringify/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/fast-json-stable-stringify/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-json-stable-stringify/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/fast-json-stringify/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-json-stringify/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/fast-json-stringify/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fast-json-stringify/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/fastify/examples/typescript-server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fastify/examples/typescript-server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/fastify/fastify.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fastify/fastify.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/fastify/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/fastify/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/find-my-way/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/find-my-way/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/find-my-way/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/find-my-way/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/light-my-request/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/light-my-request/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/light-my-request/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/light-my-request/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/tiny-lru/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/tiny-lru/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/uri-js/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uri-js/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/uri-js/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uri-js/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/uri-js/src/punycode.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uri-js/src/punycode.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/uri-js/src/regexps-iri.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uri-js/src/regexps-iri.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/uri-js/src/regexps-uri.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uri-js/src/regexps-uri.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/uri-js/src/schemes/http.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uri-js/src/schemes/http.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/uri-js/src/schemes/https.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uri-js/src/schemes/https.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/uri-js/src/schemes/mailto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uri-js/src/schemes/mailto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/uri-js/src/schemes/urn-uuid.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uri-js/src/schemes/urn-uuid.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/uri-js/src/schemes/urn.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uri-js/src/schemes/urn.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/uri-js/src/uri.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uri-js/src/uri.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/uri-js/src/util.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uri-js/src/util.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yeelight.js" beforeDir="false" afterPath="$PROJECT_DIR$/lights/yeelight.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,12 +59,16 @@
     <configuration name="index.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="index.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
+    <configuration name="test-index.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="test-index.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
     <configuration name="testfile.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="testfile.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Node.js.index.js" />
+        <item itemvalue="Node.js.test-index.js" />
         <item itemvalue="Node.js.testfile.js" />
       </list>
     </recent_temporary>
@@ -119,7 +92,7 @@
       <workItem from="1590359909842" duration="6779000" />
       <workItem from="1590600275335" duration="2668000" />
       <workItem from="1590949053376" duration="1333000" />
-      <workItem from="1591030904355" duration="7731000" />
+      <workItem from="1591030904355" duration="14958000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <created>1590359054598</created>
@@ -142,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590423407950</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="refactored to use fastify.">
+      <created>1591096626460</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1591096626460</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,6 +146,7 @@
     <MESSAGE value="fix" />
     <MESSAGE value="added flow mode" />
     <MESSAGE value="added sequences and some cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="added sequences and some cleanup" />
+    <MESSAGE value="refactored to use fastify." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored to use fastify." />
   </component>
 </project>
