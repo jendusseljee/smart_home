@@ -13,6 +13,18 @@ async function routes(fastify, options, done) {
         device.pause();
         return {status: 'success'}
     });
+    fastify.get('/seek', async (request, reply) => {
+        device.seek(request.query['seconds']);
+        return {status: 'success'}
+    });
+    fastify.get('/next', async (request, reply) => {
+        device.next();
+        return {status: 'success'}
+    });
+    fastify.get('/previous', async (request, reply) => {
+        device.previous();
+        return {status: 'success'}
+    });
     fastify.get('/current', async (request, reply) => {
         return device.currentTrack();
     });
