@@ -17,12 +17,6 @@ async function routes(fastify, options, done) {
     fastify.get('/', async (request, reply) => {
         return {hello: 'lights'}
     });
-    fastify.get('/status', async (request, reply) => {
-        let res = [];
-        for (let key in bulbs)
-            res.push(bulbs[key]);
-        return res;
-    });
     fastify.get('/:light/:function', async (request, reply) => {
         let f;
         switch (request.params['function']) {
@@ -44,6 +38,14 @@ async function routes(fastify, options, done) {
             case 'color':
                 f = (bulb) => yeelight.color(bulb, parseInt(request.query['r']), parseInt(request.query['g']), parseInt(request.query['b']));
                 break;
+            case 'status':
+                if (request.params['light'] === 'all'){
+                    for (let key in bulbs)
+                        if (bulbs[key].status()['power'] === 'on')
+                            return bulbs[key].status();
+                    return ceiling.status();
+                }
+                return bulbs[request.params['light']].status();
         }
         if (request.params['light'] === 'all'){
             for (let key in bulbs)
