@@ -121,6 +121,23 @@ class Bulb extends EventEmitter {
     });
   }
 
+  addBrightness(delta) {
+    let current = this.props['bright'];
+    let value = 50;
+    if (current) {
+      if (current + delta > 100)
+        value = 100;
+      else if (current + delta < 1)
+        value = 1;
+      else
+        value = current + delta;
+    }
+    this.sendCmd({
+      params: [value, 'smooth', 300],
+      method: 'set_bright'
+    });
+  }
+
   temperature(value){
     this.sendCmd({
       params: [value, 'sudden', 300],
@@ -165,5 +182,8 @@ module.exports = {
     },
     color: (bulb, r, g, b) => {
         bulb.color(r, g, b);
+    },
+    addBrightness: (bulb, delta) => {
+      bulb.addBrightness(delta);
     }
 };

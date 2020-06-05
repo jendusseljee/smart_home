@@ -33,7 +33,11 @@ async function routes(fastify, options, done) {
                 f = (bulb) => yeelight.temperature(bulb, parseInt(request.query['value']));
                 break;
             case 'brightness':
-                f = (bulb) => yeelight.brightness(bulb, parseInt(request.query['value']));
+                if (request.query['value'])
+                    f = (bulb) => yeelight.brightness(bulb, parseInt(request.query['value']));
+                else {
+                    f = (bulb) => yeelight.addBrightness(bulb, parseInt(request.query['delta']));
+                }
                 break;
             case 'color':
                 f = (bulb) => yeelight.color(bulb, parseInt(request.query['r']), parseInt(request.query['g']), parseInt(request.query['b']));
